@@ -1,0 +1,11 @@
+eureka.client.service-url.defaultZone: http://localhost:5858/eureka
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: product_service
+          uri: http://localhost:5861/
+          predicates:
+            - Path=/product
+
