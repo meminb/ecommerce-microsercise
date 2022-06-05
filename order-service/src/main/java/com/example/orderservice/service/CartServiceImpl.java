@@ -1,4 +1,4 @@
-/*package com.example.orderservice.service;
+package com.example.orderservice.service;
 
 import com.example.orderservice.model.Item;
 import com.example.orderservice.model.Product;
@@ -74,4 +74,4 @@ public class CartServiceImpl implements CartService {
     public void deleteCart(String cartId) {
         cartRedisRepository.deleteCart(cartId);
     }
-}*/
+}
