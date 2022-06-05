@@ -14,12 +14,12 @@ public class AuthService {
         this.userRepository = userRepository;
     }
 
-    public boolean authenticate(String username, String password) {
-        User user = userRepository.findByUsername(username);
+    public boolean authenticate(User user1) {
+        User user = userRepository.findByUsername(user1.getUsername());
         if (user == null) {
             return false;
         }
-        return user.getPassword().equals(password);
+        return user.getPassword().equals(user1.getPassword());
     }
 
 

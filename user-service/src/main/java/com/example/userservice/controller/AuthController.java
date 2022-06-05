@@ -1,5 +1,6 @@
 package com.example.userservice.controller;
 
+import com.example.userservice.entity.User;
 import com.example.userservice.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 public class AuthController {
 
     private final AuthService authService;
@@ -19,7 +20,7 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    public boolean login(@RequestBody String username,@RequestBody String password) {
-        return authService.authenticate(username, password);
+    public boolean login(@RequestBody User user) {
+        return authService.authenticate(user);
     }
 }

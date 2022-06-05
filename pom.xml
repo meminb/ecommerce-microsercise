@@ -78,6 +78,7 @@
      <module>config-server</module>
      <module>api-gateway</module>
      <module>user-service</module>
+     <module>orderservice</module>
 
 
      <module>product-service</module>

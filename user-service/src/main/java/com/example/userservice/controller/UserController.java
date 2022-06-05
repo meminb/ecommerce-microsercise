@@ -1,6 +1,7 @@
 package com.example.userservice.controller;
 
 import com.example.userservice.entity.User;
+import com.example.userservice.service.AuthService;
 import com.example.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,13 +10,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("users/")
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
+    private final AuthService authService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, AuthService authService) {
         this.userService = userService;
+        this.authService = authService;
     }
 
     @GetMapping
@@ -36,7 +39,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @GetMapping(value = "{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<User> findById(@PathVariable("id") Long id){
         User user = userService.findById(id);
         if (user == null){
@@ -45,10 +48,18 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @PostMapping
-    public ResponseEntity<User> addUser(User user){
+    @PostMapping("/register")
+    public ResponseEntity<User> addUser(@RequestBody User user){
         User savedUser = userService.save(user);
         return ResponseEntity.ok(savedUser);
+    }
+
+
+
+
+    @GetMapping("/login")
+    public boolean login(@RequestBody User user) {
+        return authService.authenticate(user);
     }
 
 
