@@ -15,12 +15,6 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @RequestMapping("demo")
-    public String demo() {
-        return "e ananin ami";
-        //return productService.queryById(id);
-    }
-
 
     @GetMapping("{id}")
     public ResponseEntity<Product> queryById(@PathVariable("id") Long id) {

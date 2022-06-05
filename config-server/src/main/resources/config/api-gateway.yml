@@ -9,3 +9,8 @@ spring:
           predicates:
             - Path=/product
 
+        - id: user-service
+          uri: http://localhost:5862/
+          predicates:
+            - Path=/users
+
