@@ -1,6 +1,18 @@
 
 ## Architecture
 
+
+
+### Databases
+* User service   => user-db
+* Product service => product-db
+* Order service   => order-db
+
+
+
+
+
+
 ![Architecture Scheme](https://user-images.githubusercontent.com/47768192/171997298-f824eb35-82de-4979-b9a3-0bd041c7891a.png)
 
 
