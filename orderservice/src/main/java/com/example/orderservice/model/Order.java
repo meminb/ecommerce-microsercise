@@ -1,6 +1,7 @@
 package com.example.orderservice.model;
 
-import org.jetbrains.annotations.NotNull;
+
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
