@@ -1,15 +1,16 @@
 package com.example.userservice.controller;
 
-import com.example.userservice.entity.User;
+import com.example.userservice.dto.request.LoginRequestDto;
+import com.example.userservice.dto.request.RegisterRequestDto;
+import com.example.userservice.dto.response.LoginResponseDto;
+import com.example.userservice.dto.response.RegisterResponseDto;
 import com.example.userservice.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin(origins = "*")
 public class AuthController {
 
     private final AuthService authService;
@@ -20,7 +21,12 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    public boolean login(@RequestBody User user) {
-        return authService.authenticate(user);
+    public LoginResponseDto login(@RequestBody LoginRequestDto loginRequestDto) {
+        return authService.authenticate(loginRequestDto);
+    }
+
+    @PostMapping("/register")
+    public RegisterResponseDto register(@RequestBody RegisterRequestDto registerRequestDto){
+        return authService.register(registerRequestDto);
     }
 }
