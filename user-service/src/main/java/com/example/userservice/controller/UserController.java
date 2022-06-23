@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(origins = "*")
 public class UserController {
     private final UserService userService;
     private final AuthService authService;
@@ -53,14 +54,5 @@ public class UserController {
         User savedUser = userService.save(user);
         return ResponseEntity.ok(savedUser);
     }
-
-
-
-
-    @GetMapping("/login")
-    public boolean login(@RequestBody User user) {
-        return authService.authenticate(user);
-    }
-
 
 }
