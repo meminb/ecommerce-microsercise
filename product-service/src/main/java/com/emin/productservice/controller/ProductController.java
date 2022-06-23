@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("product/")
@@ -50,17 +51,15 @@ public class ProductController {
     }
 
     @GetMapping (value = "products/{id}")
-    public ResponseEntity<Product> getOneProductById(@PathVariable ("id") long id){
-        Product product =  productService.getProductById(id);
-        if(product != null) {
-            return new ResponseEntity<Product>(
-                    product,
-                    headerGenerator.getHeadersForSuccessGetMethod(),
-                    HttpStatus.OK);
+    public ResponseEntity getOneProductById(@PathVariable ("id") long id){
+        Optional<Product> product =  productService.getProductById(id);
+
+        if(product .isPresent()) {
+            return ResponseEntity.ok(product.get());
+        }else{
+            return (ResponseEntity) ResponseEntity.status(HttpStatus.NOT_FOUND).headers(headerGenerator.getHeadersForError());
         }
-        return new ResponseEntity<Product>(
-                headerGenerator.getHeadersForError(),
-                HttpStatus.NOT_FOUND);
+
     }
 
     @GetMapping (value = "products", params = "name")
@@ -104,8 +103,8 @@ public class ProductController {
 
     @DeleteMapping(value = "products/{id}")
     private ResponseEntity<Void> deleteProduct(@PathVariable("id") Long id){
-        Product product = productService.getProductById(id);
-        if(product != null) {
+        Optional<Product> product = productService.getProductById(id);
+        if(product.isPresent()) {
             try {
                 productService.deleteProduct(id);
                 return new ResponseEntity<Void>(
