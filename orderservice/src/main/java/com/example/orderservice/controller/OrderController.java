@@ -67,7 +67,7 @@ public class OrderController {
                 HttpStatus.NOT_FOUND);
     }
     //@PostMapping("/{userId}")
-    public ResponseEntity<Order> saveOrder2(@PathVariable("userId") Long userId, HttpServletRequest request) {
+    /*public ResponseEntity<Order> saveOrder2(@PathVariable("userId") Long userId, HttpServletRequest request) {
         Item item1 =new Item(1,createProduct("çiko",BigDecimal.ONE, new ArrayList<Item>()),BigDecimal.TEN);
         List<Item> cart = new ArrayList<>();
         cart.add(item1);
@@ -92,7 +92,7 @@ public class OrderController {
         return new ResponseEntity<Order>(
                 headerGenerator.getHeadersForError(),
                 HttpStatus.NOT_FOUND);
-    }
+    }*/
     private Order createOrder(List<Item> cart, User user) {
         Order order = new Order();
         order.setItems(cart);

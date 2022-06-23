@@ -1,7 +1,6 @@
 package com.example.orderservice.model;
 
-
-import com.sun.istack.NotNull;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,18 +9,17 @@ import java.util.List;
 
 @Entity
 @Table (name = "orders")
+@Data
 public class Order {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column (name = "ordered_date")
-    @NotNull
+    @Column (name = "ordered_date",nullable = false)
     private LocalDate orderedDate;
 
-    @Column(name = "status")
-    @NotNull
+    @Column(name = "status",nullable = false)
     private String status;
 
     @Column (name = "total")
@@ -34,56 +32,5 @@ public class Order {
     @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn (name = "user_id")
     private User user;
-    
-	public Order() {
-		
-	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public LocalDate getOrderedDate() {
-		return orderedDate;
-	}
-
-	public void setOrderedDate(LocalDate orderedDate) {
-		this.orderedDate = orderedDate;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public BigDecimal getTotal() {
-		return total;
-	}
-
-	public void setTotal(BigDecimal total) {
-		this.total = total;
-	}
-
-	public List<Item> getItems() {
-		return items;
-	}
-
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 }

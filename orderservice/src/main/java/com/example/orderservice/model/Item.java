@@ -1,7 +1,6 @@
 package com.example.orderservice.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.istack.NotNull;
 import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,6 +9,8 @@ import java.util.List;
 @Entity
 @Table (name = "items")
 @EqualsAndHashCode
+@Data
+@RequiredArgsConstructor
 public class Item {
 	
     @Id
@@ -17,12 +18,10 @@ public class Item {
     @JsonIgnore
     private Long id;
 
-    @Column (name = "quantity")
-    @NotNull
+    @Column (name = "quantity",nullable = false)
     private int quantity;
 
-    @Column (name = "subtotal")
-    @NotNull
+    @Column (name = "subtotal",nullable = false)
     private BigDecimal subTotal;
 
     @ManyToOne (cascade = CascadeType.ALL)
@@ -32,54 +31,10 @@ public class Item {
     @ManyToMany (mappedBy = "items")
     @JsonIgnore
     private List<Order> orders;
-    
-    public Item() {
-    	
-    }
 
-    public Item(@NotNull int quantity, Product product, BigDecimal subTotal) {
+    public Item(Integer quantity, Product product, BigDecimal subTotalForItem) {
         this.quantity = quantity;
         this.product = product;
-        this.subTotal = subTotal;
+        this.subTotal = subTotalForItem;
     }
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-	public BigDecimal getSubTotal() {
-		return subTotal;
-	}
-
-	public void setSubTotal(BigDecimal subTotal) {
-		this.subTotal = subTotal;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-	public List<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
 }
