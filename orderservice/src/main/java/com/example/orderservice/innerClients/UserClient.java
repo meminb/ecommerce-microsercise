@@ -2,7 +2,6 @@ package com.example.orderservice.innerClients;
 
 import com.example.orderservice.model.User;
 import com.netflix.appinfo.InstanceInfo;
-import com.netflix.discovery.DiscoveryClient;
 import com.netflix.discovery.EurekaClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

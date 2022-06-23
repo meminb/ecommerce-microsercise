@@ -29,8 +29,7 @@ public class Order {
     @JoinTable (name = "cart" , joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn (name = "item_id"))
     private List<Item> items;
 
-    @ManyToOne (cascade = CascadeType.ALL)
-    @JoinColumn (name = "user_id")
-    private User user;
+    @Column (name = "user_id")
+    private Long userId;
 
 }

@@ -1,16 +1,12 @@
 package com.example.orderservice.innerClients;
 
 import com.example.orderservice.model.Product;
-import com.example.orderservice.model.User;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
-import org.apache.commons.lang.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import java.beans.BeanProperty;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,7 +37,7 @@ public class ProductClient {
     private String getProductServiceUrl(){
         try {
             InstanceInfo instanceInfo =eurekaClient.getApplication("PRODUCT-SERVICE").getInstances().get(0);
-            return "http://localhost:"+instanceInfo.getPort()+"/product/";
+            return "http://localhost:"+instanceInfo.getPort()+"/product/products/";
         }catch (Exception exception){
             Logger.getLogger(ProductClient.class.getName()).log(Level.SEVERE,"Product service may not be running");
             throw exception;
