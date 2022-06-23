@@ -1,10 +1,10 @@
-/*package com.example.orderservice.service;
+package com.example.orderservice.service;
 
 import com.example.orderservice.model.Item;
 import com.example.orderservice.model.Product;
-import com.example.orderservice.feignclient.ProductClient;
 import com.example.orderservice.redis.CartRedisRepository;
 import com.example.orderservice.utilities.CartUtilities;
+import com.example.orderservice.innerClients.ProductClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -74,4 +74,4 @@ public class CartServiceImpl implements CartService {
     public void deleteCart(String cartId) {
         cartRedisRepository.deleteCart(cartId);
     }
-}*/
+}

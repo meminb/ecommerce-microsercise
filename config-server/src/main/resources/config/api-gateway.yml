@@ -7,10 +7,15 @@ spring:
         - id: product_service
           uri: http://localhost:5861/
           predicates:
-            - Path=/product
+            - Path=/product/**
 
         - id: user-service
           uri: http://localhost:5862/
           predicates:
-            - Path=/users/**
+            - Path=/users/**, /auth/**
 
+
+        - id: order_service
+          uri: http://localhost:5863/
+          predicates:
+            - Path=/order/**, /cart/**

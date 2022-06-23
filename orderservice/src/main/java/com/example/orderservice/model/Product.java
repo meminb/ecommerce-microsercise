@@ -1,7 +1,7 @@
 package com.example.orderservice.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.istack.NotNull;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -9,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Table (name = "products")
+@Data
 public class Product {
 
     @Id
@@ -19,47 +20,12 @@ public class Product {
     @Transient
     private Long id;
 
-    @Column (name = "product_name")
-    @NotNull
+    @Column (name = "product_name",nullable = false)
     private String productName;
-    @Column (name = "price")
-    @NotNull
+    @Column (name = "price",nullable = false)
     private BigDecimal price;
 
     @OneToMany (mappedBy = "product", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Item> items;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
 }
