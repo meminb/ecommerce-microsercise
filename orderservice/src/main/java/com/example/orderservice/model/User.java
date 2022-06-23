@@ -1,26 +1,24 @@
 package com.example.orderservice.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
-@Table (name = "users")
-@Getter
-@Setter
+
+@Data
 public class User {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column (name = "user_name",nullable = false)
+    @Column (name = "user_name")
     private String userName;
 
-    @OneToMany (mappedBy = "user")
     @JsonIgnore
     private List<Order> orders;
+
+
 }
